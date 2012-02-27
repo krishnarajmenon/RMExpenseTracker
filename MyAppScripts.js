@@ -57,10 +57,7 @@
                         var errors = currentExpense.validate();
                         if (!errors.isValid()){
                             currentExpense.reject();
-                            if (errors.getByField('expenseItemName') === null || errors.getByField('expenseItemName') === 'undefined') {
-                                Ext.Msg.alert('Wait!', errors.getByField('expenseItemName')[0].message, Ext.emptyFn);
-                            }
-                            Ext.Msg.alert('Wait!', errors.getByField('expenseItemPrice')[0].message, Ext.emptyFn);
+                            Ext.Msg.alert('Wait!', 'One or more fields has not been entered!!', Ext.emptyFn);
                             return;
                         }
                         
@@ -174,7 +171,7 @@
         KrisApp.views.expensesList = Ext.create('Ext.List', {
                 id:'expensesList',
                 store : KrisApp.views.expensesStore,
-                itemTpl:'<div class="list-item-title">{expenseItemName}<div style="float:right;font-size:70%;margin-right:60px;background-color:grey;color:white;font-weight:bold;">&nbspRs. {expenseItemPrice}&nbsp</div></div>'+'<div class="list-item-narrative">{expenseItemDescription}</div>',
+                itemTpl:'<div class="list-item-title">{expenseItemName}<div style="float:right;font-size:70%;margin-right:60px;background-color:grey;color:white;font-weight:bold;">&nbsp Rs. {expenseItemPrice}&nbsp&nbsp</div></div>'+'<div class="list-item-narrative">{expenseItemDescription}</div>',
                 onItemDisclosure:function(record){
                     var selectedExpense = record;
                     KrisApp.views.appExpenseEditor.load(selectedExpense);
